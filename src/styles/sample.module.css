@@ -1,0 +1,8 @@
+.main {
+  height: 300px;
+  width: clamp(100px, 90%, 500px);
+}
+
+.label {
+  fill: black;
+}
