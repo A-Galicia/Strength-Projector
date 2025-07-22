@@ -31,7 +31,7 @@ function Sample() {
           <Line
             type='monotone'
             dataKey='strength'
-            stroke='#172c3dff'
+            stroke='#ff0000ff'
             strokeWidth={3}
             dot={false}
           ></Line>

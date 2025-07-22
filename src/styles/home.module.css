@@ -6,3 +6,15 @@
   align-items: center;
   font-size: 1.4rem;
 }
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item {
+  margin-block: 10px;
+}

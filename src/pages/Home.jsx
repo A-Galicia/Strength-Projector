@@ -7,14 +7,14 @@ function Home() {
       <h1>Strength Projector</h1>
       <Sample></Sample>
       <nav>
-        <ul>
-          <li>
-            <a>Tryout the App</a>
+        <ul className={classes.list}>
+          <li className={classes.item}>
+            <a href='projector'>Tryout the App</a>
           </li>
-          <li>
+          <li className={classes.item}>
             <a>Create an account</a>
           </li>
-          <li>
+          <li className={classes.item}>
             <a
               href='https://github.com/A-Galicia/Strength-Projector'
               target='_blank'

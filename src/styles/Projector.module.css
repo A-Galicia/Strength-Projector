@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.item {
+  margin-block: 10px;
+}
+
+nav {
+  width: clamp(200px, 75%, 500px);
+}
+
+.verticalLine {
+  border-left: 3px solid black;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  display: flex;
+  margin-block: 5px;
+  width: 100%;
+}
+
+.input {
+  flex-grow: 1;
+}
+
+.submit {
+  width: 30%;
+  margin-block: 5px;
+}
