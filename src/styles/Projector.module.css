@@ -43,3 +43,15 @@ nav {
   width: 30%;
   margin-block: 5px;
 }
+
+table {
+  border: 2px solid green;
+}
+
+th {
+  border: 2px solid black;
+}
+
+td {
+  border: 2px solid grey;
+}

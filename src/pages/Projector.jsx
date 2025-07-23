@@ -1,6 +1,20 @@
+import { useState } from 'react';
 import classes from '../styles/Projector.module.css';
+import RpeTable from '../components/RpeTable';
 
 function Projector() {
+  const [exercise, setExersice] = useState('');
+  const [mass, setMass] = useState(100);
+  const [reps, setReps] = useState(1);
+  const [rpe, setRpe] = useState(10);
+
+  function calculate(e) {
+    e.preventDefault();
+    console.log(exercise);
+    console.log(mass);
+    console.log(rpe);
+  }
+
   return (
     <div className={classes.main}>
       <nav>
@@ -29,7 +43,7 @@ function Projector() {
         </ul>
       </nav>
 
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={calculate}>
         <label className={classes.label} htmlFor='exercise'>
           Exercise:
           <input
@@ -37,6 +51,8 @@ function Projector() {
             id='exercise'
             name='exercise'
             list='exercises'
+            value={exercise}
+            onChange={(e) => setExersice(e.target.value)}
           />
         </label>
 
@@ -55,6 +71,22 @@ function Projector() {
             type='number'
             name='mass'
             min='8'
+            value={mass}
+            onChange={(e) => setMass(e.target.value)}
+            required
+          />
+        </label>
+        <label className={classes.label} htmlFor='reps'>
+          Repetitions:
+          <input
+            className={classes.input}
+            id='reps'
+            type='number'
+            min='1'
+            max='10'
+            name='reps'
+            value={reps}
+            onChange={(e) => setReps(e.target.value)}
             required
           />
         </label>
@@ -67,6 +99,8 @@ function Projector() {
             min='8'
             max='10'
             name='rpe'
+            value={rpe}
+            onChange={(e) => setRpe(e.target.value)}
             required
           />
         </label>
@@ -74,6 +108,8 @@ function Projector() {
           Submit
         </button>
       </form>
+
+      <RpeTable mass={mass} reps={reps} rpe={rpe} />
     </div>
   );
 }
