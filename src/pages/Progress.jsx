@@ -9,7 +9,13 @@ function Progress() {
   const [reps, setReps] = useState(1);
   const [rpe, setRpe] = useState(10);
   const [date, setDate] = useState('');
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    exercise: '',
+    mass: 100,
+    reps: 1,
+    rep: 10,
+    date: '2025-07-24',
+  });
 
   function submitData(e) {
     e.preventDefault();
@@ -107,7 +113,7 @@ function Progress() {
         </button>
       </form>
 
-      <ProgressChart Newdata={data} />
+      <ProgressChart data={data} />
     </div>
   );
 }

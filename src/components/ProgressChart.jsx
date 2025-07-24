@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import classes from '../styles/Progress.module.css';
 import {
   LineChart,
@@ -13,25 +13,60 @@ import {
   AreaChart,
 } from 'recharts';
 
-const data = (() => {
-  let data = [];
-  for (let i = 0; i < 30; i++) {
-    let x = (3 * i) ** (1 / 3) - i + (0.2 * i) ** 2 + 225;
-    const fixedX = x.toFixed(2);
-    data.push({ strength: fixedX });
-  }
-  return data;
-})();
+function ProgressChart({ data }) {
+  const [maxData, setMaxData] = useState([]);
 
-function ProgressChart({ Newdata }) {
+  function deleteLast(e) {
+    e.preventDefault();
+    // React useState is an object, can't use pop()
+    const newData = [];
+    for (let i = 0; i < maxData.length - 1; i++) {
+      newData.push(maxData[i]);
+    }
+
+    setMaxData(newData);
+  }
+
+  function get1rm(weight, repetitions, exertion) {
+    /*
+    Epley 1 rep max formula
+    -----------------------
+    1RM = weight(1+ (reps/30))
+    w/ RPE:  weight(1+ (reps-(10-RPE)/30))
+
+
+    Epley's formula has a 1 rep max starting at 0
+    it skips x = 1, so the original has rep maxes a little lower
+    including x = 1 raises the values, to what I believe are the 
+    more appropriate values
+
+    this is why total reps is subtracted by 1
+    and if reps = 1, then it is 0 for the actual 1 rep max estimate
+    */
+
+    let totalReps = parseInt(repetitions) - 1;
+    if (repetitions === 1) {
+      totalReps = 0;
+    }
+
+    const estimate = (
+      weight *
+      (1 + (totalReps + (10 - exertion)) / 30)
+    ).toFixed(1);
+
+    return estimate;
+  }
+
   useEffect(() => {
-    console.log(Newdata);
-  }, [Newdata]);
+    const max = get1rm(data.mass, data.reps, data.rpe);
+
+    setMaxData([...maxData, { strength: max }]);
+  }, [data]);
 
   return (
     <div className={classes.mainChart}>
       <ResponsiveContainer width='100%' height='100%'>
-        <AreaChart data={data} margin={{ bottom: 50, left: 50 }}>
+        <AreaChart data={maxData} margin={{ bottom: 50, left: 50 }}>
           <Line
             type='monotone'
             dataKey='strength'
@@ -48,6 +83,10 @@ function ProgressChart({ Newdata }) {
           <Tooltip />
         </AreaChart>
       </ResponsiveContainer>
+
+      <form onSubmit={deleteLast}>
+        <button type='submit'>Delete Last Input</button>
+      </form>
     </div>
   );
 }
