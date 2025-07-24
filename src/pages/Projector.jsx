@@ -64,7 +64,7 @@ function Projector() {
         </datalist>
 
         <label className={classes.label} htmlFor='mass'>
-          Mass:
+          Mass (lbs):
           <input
             className={classes.input}
             id='mass'
@@ -96,7 +96,7 @@ function Projector() {
             className={classes.input}
             id='rpe'
             type='number'
-            min='8'
+            min='5'
             max='10'
             name='rpe'
             value={rpe}
@@ -104,9 +104,6 @@ function Projector() {
             required
           />
         </label>
-        <button className={classes.submit} type='submit'>
-          Submit
-        </button>
       </form>
 
       <RpeTable mass={mass} reps={reps} rpe={rpe} />

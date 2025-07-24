@@ -45,7 +45,7 @@ nav {
 }
 
 table {
-  border: 2px solid green;
+  border: 2px solid rgb(0, 0, 0);
 }
 
 th {
@@ -54,4 +54,25 @@ th {
 
 td {
   border: 2px solid grey;
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: grey;
+}
+
+.tableDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maxDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 9px outset rgb(35, 35, 35);
+}
+
+.max {
+  font-size: 2rem;
 }
