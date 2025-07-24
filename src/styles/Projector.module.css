@@ -4,25 +4,6 @@
   align-items: center;
 }
 
-.list {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.item {
-  margin-block: 10px;
-}
-
-nav {
-  width: clamp(200px, 75%, 500px);
-}
-
-.verticalLine {
-  border-left: 3px solid black;
-}
-
 .form {
   display: flex;
   flex-direction: column;

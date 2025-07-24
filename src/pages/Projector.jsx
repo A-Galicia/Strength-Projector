@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import classes from '../styles/Projector.module.css';
 import RpeTable from '../components/RpeTable';
+import NavBar from '../components/NavBar';
 
 function Projector() {
   const [exercise, setExersice] = useState('');
@@ -17,31 +18,7 @@ function Projector() {
 
   return (
     <div className={classes.main}>
-      <nav>
-        <ul className={classes.list}>
-          <li className={classes.item}>
-            <a>Create Account</a>
-          </li>
-
-          <div className={classes.verticalLine}></div>
-
-          <li className={classes.item}>
-            <a>Login</a>
-          </li>
-
-          <div className={classes.verticalLine}></div>
-
-          <li className={classes.item}>
-            <a
-              href='https://github.com/A-Galicia/Strength-Projector'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Github
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <NavBar />
 
       <form className={classes.form} onSubmit={calculate}>
         <label className={classes.label} htmlFor='exercise'>

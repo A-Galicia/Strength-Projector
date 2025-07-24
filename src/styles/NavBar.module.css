@@ -1,0 +1,26 @@
+.list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.item {
+  margin-block: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+nav {
+  width: clamp(200px, 75%, 500px);
+}
+
+.verticalLine {
+  border-left: 3px solid black;
+}
+
+a {
+  place-self: center;
+  width: min-content;
+}
