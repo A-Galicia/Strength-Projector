@@ -1,0 +1,55 @@
+import { useEffect } from 'react';
+import classes from '../styles/Progress.module.css';
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Label,
+  ResponsiveContainer,
+  AreaChart,
+} from 'recharts';
+
+const data = (() => {
+  let data = [];
+  for (let i = 0; i < 30; i++) {
+    let x = (3 * i) ** (1 / 3) - i + (0.2 * i) ** 2 + 225;
+    const fixedX = x.toFixed(2);
+    data.push({ strength: fixedX });
+  }
+  return data;
+})();
+
+function ProgressChart({ Newdata }) {
+  useEffect(() => {
+    console.log(Newdata);
+  }, [Newdata]);
+
+  return (
+    <div className={classes.mainChart}>
+      <ResponsiveContainer width='100%' height='100%'>
+        <AreaChart data={data} margin={{ bottom: 50, left: 50 }}>
+          <Line
+            type='monotone'
+            dataKey='strength'
+            stroke='#ff0000ff'
+            strokeWidth={3}
+            dot={false}
+          ></Line>
+          <XAxis stroke='#000000ff'>
+            <Label className={classes.label} value='days' position='bottom' />
+          </XAxis>
+          <YAxis domain={['auto', 'auto']} stroke='#000000ff'>
+            <Label className={classes.label} value='lbs' position='left' />
+          </YAxis>
+          <Tooltip />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+export default ProgressChart;

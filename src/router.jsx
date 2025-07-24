@@ -1,5 +1,6 @@
 import Home from './pages/Home';
-import Projector from './pages/Projector';
+import Estimator from './pages/Estimator.jsx';
+import Progress from './pages/Progress.jsx';
 
 const router = [
   {
@@ -7,8 +8,12 @@ const router = [
     element: <Home />,
   },
   {
-    path: 'projector',
-    element: <Projector />,
+    path: 'estimator',
+    element: <Estimator />,
+  },
+  {
+    path: 'progress',
+    element: <Progress />,
   },
 ];
 

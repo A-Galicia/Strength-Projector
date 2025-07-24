@@ -9,7 +9,7 @@ function Home() {
       <nav>
         <ul className={classes.list}>
           <li className={classes.item}>
-            <a href='projector'>Tryout the App</a>
+            <a href='estimator'>Tryout the App</a>
           </li>
           <li className={classes.item}>
             <a>Create an account</a>

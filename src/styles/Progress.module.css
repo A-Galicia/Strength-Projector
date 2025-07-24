@@ -1,0 +1,37 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  display: flex;
+  margin-block: 5px;
+  width: 100%;
+}
+
+.input {
+  flex-grow: 1;
+}
+
+.submit {
+  width: 30%;
+  margin-block: 5px;
+}
+
+/* Chart Styles */
+
+.mainChart {
+  height: 300px;
+  width: clamp(100px, 90%, 500px);
+}
+
+.label {
+  fill: black;
+}

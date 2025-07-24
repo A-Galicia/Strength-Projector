@@ -29,13 +29,13 @@ function NavBar() {
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a>Progress Projector</a>
+          <a href='/progress'>Progress Projector</a>
         </li>
 
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a href='/projector'>Rep Projector</a>
+          <a href='/estimator'>Max Estimator</a>
         </li>
       </ul>
     </nav>
