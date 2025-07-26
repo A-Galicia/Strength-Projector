@@ -2,6 +2,8 @@ import { useState } from 'react';
 import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
 import ProgressChart from '../components/ProgressChart';
+import Calc from '../calc';
+import { format } from 'date-fns';
 
 function Progress() {
   const [exercise, setExersice] = useState('');
@@ -14,18 +16,23 @@ function Progress() {
     mass: 100,
     reps: 1,
     rep: 10,
-    date: '2025-07-24',
+    date: format(new Date(`2025`, `01`, `01`), 'MM/dd/yy'),
   });
 
   function submitData(e) {
     e.preventDefault();
+    const { year, month, day } = Calc.parseDate(date);
+    const formatedDate = format(
+      new Date(`${year}`, `${month}`, `${day}`),
+      'MM/dd/yy'
+    );
 
     const data = {
       exercise,
       mass,
       reps,
       rpe,
-      date,
+      formatedDate,
     };
     setData(data);
   }

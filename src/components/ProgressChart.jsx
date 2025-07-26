@@ -1,72 +1,89 @@
 import { useEffect, useState } from 'react';
 import classes from '../styles/Progress.module.css';
+import Calc from '../calc';
 import {
   LineChart,
   Line,
-  CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   Label,
   ResponsiveContainer,
-  AreaChart,
+  ReferenceLine,
 } from 'recharts';
+import { addDays, compareAsc, format, parse } from 'date-fns';
 
 function ProgressChart({ data }) {
   const [maxData, setMaxData] = useState([]);
+  const [lastMax, setLastMax] = useState({});
+  const [projection, setProjection] = useState([]);
 
   function deleteLast(e) {
     e.preventDefault();
     // React useState is an object, can't use pop()
     const newData = [];
+    let last = {};
     for (let i = 0; i < maxData.length - 1; i++) {
       newData.push(maxData[i]);
+      last = maxData[i];
     }
 
     setMaxData(newData);
-  }
-
-  function get1rm(weight, repetitions, exertion) {
-    /*
-    Epley 1 rep max formula
-    -----------------------
-    1RM = weight(1+ (reps/30))
-    w/ RPE:  weight(1+ (reps-(10-RPE)/30))
-
-
-    Epley's formula has a 1 rep max starting at 0
-    it skips x = 1, so the original has rep maxes a little lower
-    including x = 1 raises the values, to what I believe are the 
-    more appropriate values
-
-    this is why total reps is subtracted by 1
-    and if reps = 1, then it is 0 for the actual 1 rep max estimate
-    */
-
-    let totalReps = parseInt(repetitions) - 1;
-    if (repetitions === 1) {
-      totalReps = 0;
-    }
-
-    const estimate = (
-      weight *
-      (1 + (totalReps + (10 - exertion)) / 30)
-    ).toFixed(1);
-
-    return estimate;
+    setLastMax(last);
   }
 
   useEffect(() => {
-    const max = get1rm(data.mass, data.reps, data.rpe);
+    if (!data?.formatedDate || !data.mass || !data.reps || !data.rpe) return;
 
-    setMaxData([...maxData, { strength: max }]);
+    const max = Calc.get1rm(data.mass, data.reps, data.rpe);
+
+    const last = { day: data.formatedDate, strength: max };
+    setLastMax(last);
+
+    setMaxData((prev) =>
+      [...prev, last].sort((a, b) =>
+        compareAsc(
+          parse(a.day, 'MM/dd/yyyy', new Date()),
+          parse(b.day, 'MM/dd/yyyy', new Date())
+        )
+      )
+    );
   }, [data]);
+
+  useEffect(() => {
+    if (!data?.formatedDate || !data.mass || !data.reps || !data.rpe) return;
+
+    let realData = maxData;
+
+    const newData = realData.map((max, index) => {
+      return index !== realData.length - 1 ? { ...max, strength: null } : max;
+    });
+
+    const lastDay = parse(`${lastMax.day}`, 'MM/dd/yyyy', new Date());
+
+    const proj = [
+      { day: format(addDays(lastDay, 1), 'MM/dd/yyyy'), strength: 200 },
+      { day: format(addDays(lastDay, 2), 'MM/dd/yyyy'), strength: 250 },
+      { day: format(addDays(lastDay, 3), 'MM/dd/yyyy'), strength: 275 },
+      { day: format(addDays(lastDay, 4), 'MM/dd/yyyy'), strength: 290 },
+      { day: format(addDays(lastDay, 5), 'MM/dd/yyyy'), strength: 300 },
+    ];
+
+    for (let i = 0; i < proj.length - 1; i++) {
+      newData.push(proj[i]);
+    }
+
+    setProjection(newData);
+  }, [maxData]);
+
+  useEffect(() => {
+    console.log(projection);
+  }, [projection]);
 
   return (
     <div className={classes.mainChart}>
-      <ResponsiveContainer width='100%' height='100%'>
-        <AreaChart data={maxData} margin={{ bottom: 50, left: 50 }}>
+      {/* <ResponsiveContainer width='100%' height='100%'>
+        <LineChart data={maxData} margin={{ bottom: 50, left: 50 }}>
           <Line
             type='monotone'
             dataKey='strength'
@@ -74,14 +91,45 @@ function ProgressChart({ data }) {
             strokeWidth={3}
             dot={false}
           ></Line>
-          <XAxis stroke='#000000ff'>
+          <ReferenceLine y={lastMax.strength} label='Max' stroke='green' />
+          <ReferenceLine x={lastMax.day} label='Max' stroke='green' />
+          <XAxis angle={12} dataKey='day' stroke='#000000ff'>
             <Label className={classes.label} value='days' position='bottom' />
           </XAxis>
           <YAxis domain={['auto', 'auto']} stroke='#000000ff'>
             <Label className={classes.label} value='lbs' position='left' />
           </YAxis>
           <Tooltip />
-        </AreaChart>
+        </LineChart>
+      </ResponsiveContainer> */}
+
+      <ResponsiveContainer width='100%' height='100%'>
+        <LineChart margin={{ bottom: 50, left: 50 }}>
+          {/* <Line
+            dataKey='projected'
+            stroke='#002fffff'
+            strokeWidth={3}
+            dot={false}
+            data={maxData}
+          ></Line> */}
+          <Line
+            type='monotone'
+            dataKey='strength'
+            stroke='#ff0000ff'
+            strokeWidth={3}
+            dot={false}
+            data={maxData}
+          ></Line>
+          <ReferenceLine y={lastMax.strength} label='Max' stroke='green' />
+          <ReferenceLine x={lastMax.day} label='Max' stroke='green' />
+          <XAxis angle={12} dataKey='day' stroke='#000000ff'>
+            <Label className={classes.label} value='days' position='bottom' />
+          </XAxis>
+          <YAxis domain={['auto', 'auto']} stroke='#000000ff'>
+            <Label className={classes.label} value='lbs' position='left' />
+          </YAxis>
+          <Tooltip />
+        </LineChart>
       </ResponsiveContainer>
 
       <form onSubmit={deleteLast}>
