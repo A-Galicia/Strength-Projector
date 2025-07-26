@@ -53,6 +53,7 @@ function ProgressChart({ data }) {
   useEffect(() => {
     if (!data?.formatedDate || !data.mass || !data.reps || !data.rpe) return;
 
+    console.log(maxData);
     let realData = maxData;
 
     const newData = realData.map((max, index) => {
@@ -62,11 +63,11 @@ function ProgressChart({ data }) {
     const lastDay = parse(`${lastMax.day}`, 'MM/dd/yyyy', new Date());
 
     const proj = [
-      { day: format(addDays(lastDay, 1), 'MM/dd/yyyy'), strength: 200 },
-      { day: format(addDays(lastDay, 2), 'MM/dd/yyyy'), strength: 250 },
-      { day: format(addDays(lastDay, 3), 'MM/dd/yyyy'), strength: 275 },
-      { day: format(addDays(lastDay, 4), 'MM/dd/yyyy'), strength: 290 },
-      { day: format(addDays(lastDay, 5), 'MM/dd/yyyy'), strength: 300 },
+      { day: format(addDays(lastDay, 1), 'MM/dd/yyyy'), strength: '200' },
+      { day: format(addDays(lastDay, 2), 'MM/dd/yyyy'), strength: '250' },
+      { day: format(addDays(lastDay, 3), 'MM/dd/yyyy'), strength: '275' },
+      { day: format(addDays(lastDay, 4), 'MM/dd/yyyy'), strength: '290' },
+      { day: format(addDays(lastDay, 5), 'MM/dd/yyyy'), strength: '300' },
     ];
 
     for (let i = 0; i < proj.length - 1; i++) {
@@ -105,13 +106,14 @@ function ProgressChart({ data }) {
 
       <ResponsiveContainer width='100%' height='100%'>
         <LineChart margin={{ bottom: 50, left: 50 }}>
-          {/* <Line
-            dataKey='projected'
+          <Line
+            type='monotone'
+            dataKey='strength'
             stroke='#002fffff'
             strokeWidth={3}
             dot={false}
-            data={maxData}
-          ></Line> */}
+            data={projection}
+          ></Line>
           <Line
             type='monotone'
             dataKey='strength'
