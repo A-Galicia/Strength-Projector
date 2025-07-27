@@ -60,35 +60,8 @@ function ProgressChart({ data }) {
     )
       return;
 
-    /* console.log(maxData);
-    let realData = maxData;
-
-    const newData = realData.map((max, index) => {
-      return index !== realData.length - 1 ? { ...max, strength: null } : max;
-    });
-
-    const lastDay = parse(`${lastMax.day}`, 'MM/dd/yyyy', new Date());
-
-    const proj = [
-      { day: format(addDays(lastDay, 1), 'MM/dd/yy'), strength: '200' },
-      { day: format(addDays(lastDay, 2), 'MM/dd/yy'), strength: '250' },
-      { day: format(addDays(lastDay, 3), 'MM/dd/yy'), strength: '275' },
-      { day: format(addDays(lastDay, 4), 'MM/dd/yy'), strength: '290' },
-      { day: format(addDays(lastDay, 5), 'MM/dd/yy'), strength: '300' },
-    ];
-
-    for (let i = 0; i < proj.length - 1; i++) {
-      newData.push(proj[i]);
-    }
-
-    setProjection(newData); */
-
     setProjection(Calc.linearRegression(maxData, lastMax));
   }, [maxData, lastMax]);
-
-  useEffect(() => {
-    console.log(projection);
-  }, [projection]);
 
   return (
     <div className={classes.mainChart}>

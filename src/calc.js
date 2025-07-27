@@ -79,67 +79,92 @@ class Calc {
 
     const length = mutatedData.length;
     const sumX = mutatedData.reduce((sum, d) => {
-      return sum + d.diffInDays;
+      return sum + parseInt(d.diffInDays);
     }, 0);
     const sumY = mutatedData.reduce((sum, d) => {
-      return sum + d.diffInDays;
+      return sum + parseInt(d.strength);
     }, 0);
     const sumXY = mutatedData.reduce((sum, d) => {
-      return sum + d.diffInDays * d.strength;
+      return sum + parseInt(d.diffInDays) * parseInt(d.strength);
     }, 0);
     const sumXsquared = mutatedData.reduce((sum, d) => {
-      return sum + d.diffInDays * d.diffInDays;
+      return sum + parseInt(d.diffInDays) * parseInt(d.diffInDays);
     }, 0);
 
-    console.log(sumX);
-    console.log(sumY);
-    console.log(sumXY);
-    console.log(sumXsquared);
-
-    const slope =
-      (length * sumXY - sumY * sumXY) / (length * sumXsquared - sumXsquared);
+    let slope = parseFloat(
+      (length * sumXY - sumX * sumY) / (length * sumXsquared - sumX * sumX)
+    );
     const intercept = (sumY - slope * sumX) / length;
 
     const lastDay = parse(`${lastMax.day}`, 'MM/dd/yyyy', new Date());
 
+    /* 
+    Projecting the days ahead of the last day using the linear regression algorithim
+     */
+
     const projectionDays = [
-      addDays(lastDay, 1),
-      addDays(lastDay, 7),
-      addDays(lastDay, 14),
-      addDays(lastDay, 21),
-      addDays(lastDay, 28),
+      addDays(lastDay, 2),
+      addDays(lastDay, 5),
+      addDays(lastDay, 10),
+      addDays(lastDay, 20),
+      addDays(lastDay, 30),
+      addDays(lastDay, 40),
+      addDays(lastDay, 50),
     ];
 
     const projection = [
       {
         day: format(projectionDays[0], 'MM/dd/yy'),
-        strength:
-          slope + differenceInDays(projectionDays[0], lastDay) + intercept,
+        strength: (
+          slope * differenceInDays(projectionDays[0], lastDay) +
+          intercept
+        ).toFixed(1),
       },
       {
         day: format(projectionDays[1], 'MM/dd/yy'),
-        strength:
-          slope + differenceInDays(projectionDays[1], lastDay) + intercept,
+        strength: (
+          slope * differenceInDays(projectionDays[1], lastDay) +
+          intercept
+        ).toFixed(1),
       },
       {
         day: format(projectionDays[2], 'MM/dd/yy'),
-        strength:
-          slope + differenceInDays(projectionDays[2], lastDay) + intercept,
+        strength: (
+          slope * differenceInDays(projectionDays[2], lastDay) +
+          intercept
+        ).toFixed(1),
       },
       {
         day: format(projectionDays[3], 'MM/dd/yy'),
-        strength:
-          slope + differenceInDays(projectionDays[3], lastDay) + intercept,
+        strength: (
+          slope * differenceInDays(projectionDays[3], lastDay) +
+          intercept
+        ).toFixed(1),
       },
       {
         day: format(projectionDays[4], 'MM/dd/yy'),
-        strength:
-          slope + differenceInDays(projectionDays[4], lastDay) + intercept,
+        strength: (
+          slope * differenceInDays(projectionDays[4], lastDay) +
+          intercept
+        ).toFixed(1),
+      },
+      {
+        day: format(projectionDays[5], 'MM/dd/yy'),
+        strength: (
+          slope * differenceInDays(projectionDays[5], lastDay) +
+          intercept
+        ).toFixed(1),
+      },
+      {
+        day: format(projectionDays[6], 'MM/dd/yy'),
+        strength: (
+          slope * differenceInDays(projectionDays[6], lastDay) +
+          intercept
+        ).toFixed(1),
       },
     ];
-    console.log(projection);
 
-    for (let i = 0; i < projection.length - 1; i++) {
+    for (let i = 0; i < projection.length; i++) {
       newData.push(projection[i]);
     }
 
