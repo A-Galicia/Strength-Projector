@@ -51,9 +51,16 @@ function ProgressChart({ data }) {
   }, [data]);
 
   useEffect(() => {
-    if (!data?.formatedDate || !data.mass || !data.reps || !data.rpe) return;
+    if (
+      !data?.formatedDate ||
+      !data.mass ||
+      !data.reps ||
+      !data.rpe ||
+      maxData.length <= 1
+    )
+      return;
 
-    console.log(maxData);
+    /* console.log(maxData);
     let realData = maxData;
 
     const newData = realData.map((max, index) => {
@@ -63,19 +70,21 @@ function ProgressChart({ data }) {
     const lastDay = parse(`${lastMax.day}`, 'MM/dd/yyyy', new Date());
 
     const proj = [
-      { day: format(addDays(lastDay, 1), 'MM/dd/yyyy'), strength: '200' },
-      { day: format(addDays(lastDay, 2), 'MM/dd/yyyy'), strength: '250' },
-      { day: format(addDays(lastDay, 3), 'MM/dd/yyyy'), strength: '275' },
-      { day: format(addDays(lastDay, 4), 'MM/dd/yyyy'), strength: '290' },
-      { day: format(addDays(lastDay, 5), 'MM/dd/yyyy'), strength: '300' },
+      { day: format(addDays(lastDay, 1), 'MM/dd/yy'), strength: '200' },
+      { day: format(addDays(lastDay, 2), 'MM/dd/yy'), strength: '250' },
+      { day: format(addDays(lastDay, 3), 'MM/dd/yy'), strength: '275' },
+      { day: format(addDays(lastDay, 4), 'MM/dd/yy'), strength: '290' },
+      { day: format(addDays(lastDay, 5), 'MM/dd/yy'), strength: '300' },
     ];
 
     for (let i = 0; i < proj.length - 1; i++) {
       newData.push(proj[i]);
     }
 
-    setProjection(newData);
-  }, [maxData]);
+    setProjection(newData); */
+
+    setProjection(Calc.linearRegression(maxData, lastMax));
+  }, [maxData, lastMax]);
 
   useEffect(() => {
     console.log(projection);
@@ -83,27 +92,6 @@ function ProgressChart({ data }) {
 
   return (
     <div className={classes.mainChart}>
-      {/* <ResponsiveContainer width='100%' height='100%'>
-        <LineChart data={maxData} margin={{ bottom: 50, left: 50 }}>
-          <Line
-            type='monotone'
-            dataKey='strength'
-            stroke='#ff0000ff'
-            strokeWidth={3}
-            dot={false}
-          ></Line>
-          <ReferenceLine y={lastMax.strength} label='Max' stroke='green' />
-          <ReferenceLine x={lastMax.day} label='Max' stroke='green' />
-          <XAxis angle={12} dataKey='day' stroke='#000000ff'>
-            <Label className={classes.label} value='days' position='bottom' />
-          </XAxis>
-          <YAxis domain={['auto', 'auto']} stroke='#000000ff'>
-            <Label className={classes.label} value='lbs' position='left' />
-          </YAxis>
-          <Tooltip />
-        </LineChart>
-      </ResponsiveContainer> */}
-
       <ResponsiveContainer width='100%' height='100%'>
         <LineChart margin={{ bottom: 50, left: 50 }}>
           <Line
@@ -123,8 +111,13 @@ function ProgressChart({ data }) {
             data={maxData}
           ></Line>
           <ReferenceLine y={lastMax.strength} label='Max' stroke='green' />
-          <ReferenceLine x={lastMax.day} label='Max' stroke='green' />
-          <XAxis angle={12} dataKey='day' stroke='#000000ff'>
+
+          <XAxis
+            angle={12}
+            dataKey='day'
+            stroke='#000000ff'
+            allowDuplicatedCategory={false}
+          >
             <Label className={classes.label} value='days' position='bottom' />
           </XAxis>
           <YAxis domain={['auto', 'auto']} stroke='#000000ff'>
