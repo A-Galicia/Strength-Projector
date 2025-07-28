@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts';
-import { addDays, compareAsc, format, parse } from 'date-fns';
+import { compareAsc, parse } from 'date-fns';
 
 function ProgressChart({ data }) {
   const [maxData, setMaxData] = useState([]);
@@ -70,10 +70,11 @@ function ProgressChart({ data }) {
           <Line
             type='monotone'
             dataKey='strength'
-            stroke='#002fffff'
+            stroke='#011d95ff'
             strokeWidth={3}
             dot={false}
             data={projection}
+            strokeDasharray='8 5'
           ></Line>
           <Line
             type='monotone'
@@ -83,25 +84,30 @@ function ProgressChart({ data }) {
             dot={false}
             data={maxData}
           ></Line>
-          <ReferenceLine y={lastMax.strength} label='Max' stroke='green' />
+          <ReferenceLine y={lastMax.strength} label='Max' stroke='#14891aff' />
 
           <XAxis
-            angle={12}
             dataKey='day'
             stroke='#000000ff'
             allowDuplicatedCategory={false}
           >
             <Label className={classes.label} value='days' position='bottom' />
           </XAxis>
-          <YAxis domain={['auto', 'auto']} stroke='#000000ff'>
-            <Label className={classes.label} value='lbs' position='left' />
+          <YAxis domain={['dataMin - 100', 'dataMax + 100']} stroke='#000000ff'>
+            <Label
+              className={classes.label}
+              value='lbs'
+              position='insideTopLeft'
+            />
           </YAxis>
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
 
-      <form onSubmit={deleteLast}>
-        <button type='submit'>Delete Last Input</button>
+      <form className={classes.deleteForm} onSubmit={deleteLast}>
+        <button className={classes.delete} type='submit'>
+          Delete Last Input
+        </button>
       </form>
     </div>
   );

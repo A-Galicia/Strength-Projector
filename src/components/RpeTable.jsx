@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Calc from '../calc.js';
-import classes from '../styles/Projector.module.css';
+import classes from '../styles/Estimator.module.css';
 
 function RpeTable({ mass, reps, rpe }) {
   const [e1rm, setE1rm] = useState(100);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import classes from '../styles/Projector.module.css';
+import classes from '../styles/Estimator.module.css';
 import RpeTable from '../components/RpeTable';
 import NavBar from '../components/NavBar';
 

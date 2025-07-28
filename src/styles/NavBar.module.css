@@ -14,6 +14,8 @@
 
 nav {
   width: clamp(200px, 75%, 500px);
+  background-color: rgb(0, 213, 0);
+  border-radius: 20px;
 }
 
 .verticalLine {
@@ -23,4 +25,7 @@ nav {
 a {
   place-self: center;
   width: min-content;
+  text-decoration: none;
+  color: black;
+  text-align: center;
 }

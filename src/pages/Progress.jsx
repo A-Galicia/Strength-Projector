@@ -121,6 +121,24 @@ function Progress() {
       </form>
 
       <ProgressChart data={data} />
+
+      <div className={classes.instrucions}>
+        <p>
+          The projection works best with a large array of data. So the more
+          frequent and the longer the history of data that is charted, the
+          projection will even out.
+        </p>
+        <p>
+          This uses a linear regression formulat to calculate the progress in 50
+          days
+        </p>
+        <p>
+          <a href='https://blog.nasm.org/rate-of-perceived-exertion'>RPE</a> is
+          the Rating of Percieved Exertion, which is used in this calulation. If
+          you went to Failure or don't wish to use RPE, select RPE 10 as it
+          won't have an effect on the calculation
+        </p>
+      </div>
     </div>
   );
 }
