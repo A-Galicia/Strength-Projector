@@ -5,13 +5,13 @@ function NavBar() {
     <nav>
       <ul className={classes.list}>
         <li className={classes.item}>
-          <a href='create'>Create Account</a>
+          <a href='/create'>Create Account</a>
         </li>
 
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a>Login</a>
+          <a href='/login'>Login</a>
         </li>
 
         <div className={classes.verticalLine}></div>

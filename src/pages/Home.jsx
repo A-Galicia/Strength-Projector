@@ -15,7 +15,7 @@ function Home() {
             <a href='create'>Create an Account</a>
           </li>
           <li className={classes.item}>
-            <a>Login</a>
+            <a href='login'>Login</a>
           </li>
           <li className={classes.item}>
             <a

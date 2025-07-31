@@ -2,6 +2,7 @@ import Home from './pages/Home';
 import Estimator from './pages/Estimator.jsx';
 import Progress from './pages/Progress.jsx';
 import CreateAcct from './pages/CreateAcct.jsx';
+import Login from './pages/Login.jsx';
 
 const router = [
   {
@@ -19,6 +20,10 @@ const router = [
   {
     path: 'create',
     element: <CreateAcct />,
+  },
+  {
+    path: 'login',
+    element: <Login />,
   },
 ];
 

@@ -37,14 +37,14 @@
 }
 
 .errDiv {
-  border: 5px solid red;
-  padding: 10px;
+  border: 5px solid rgb(200, 0, 0);
+  padding: 20px;
   border-radius: 30px;
   width: fit-content;
 }
 
 .error {
-  color: red;
+  color: rgb(200, 0, 0);
   width: fit-content;
   margin: 0;
 }

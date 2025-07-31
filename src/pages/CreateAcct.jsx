@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import classes from '../styles/CreateAcct.module.css';
@@ -35,26 +35,21 @@ function Home() {
     }
   }
 
-  useEffect(() => {
-    console.log(errStatus);
-    console.log(errors);
-  }, [errors, errStatus]);
-
   return (
     <div className={classes.main} onSubmit={createUser}>
       <NavBar />
       <h1>Create Account</h1>
 
       {errStatus === true ? (
-        <div className={classes}>
+        <ul className={classes.errDiv}>
           {errors.map((err) => {
             return (
-              <p key={err} className={classes.error}>
+              <li key={crypto.randomUUID} className={classes.error}>
                 {err.msg}
-              </p>
+              </li>
             );
           })}
-        </div>
+        </ul>
       ) : null}
 
       <form className={classes.form}>
@@ -105,7 +100,7 @@ function Home() {
       </form>
 
       <p>
-        Have an account? <a href='/'>Login</a>
+        Have an account? <a href='/login'>Login</a>
       </p>
     </div>
   );
