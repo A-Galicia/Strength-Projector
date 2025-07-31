@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import classes from '../styles/CreateAcct.module.css';
@@ -29,7 +29,7 @@ function Login() {
       }
 
       localStorage.setItem('jwt', data.accessToken);
-      navigate('/');
+      navigate('/auth/progress');
     } catch (err) {
       console.log(err);
       setErrStatus(true);

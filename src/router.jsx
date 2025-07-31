@@ -3,6 +3,7 @@ import Estimator from './pages/Estimator.jsx';
 import Progress from './pages/Progress.jsx';
 import CreateAcct from './pages/CreateAcct.jsx';
 import Login from './pages/Login.jsx';
+import AuthProgress from './pages/AuthProgress.jsx';
 
 const router = [
   {
@@ -24,6 +25,10 @@ const router = [
   {
     path: 'login',
     element: <Login />,
+  },
+  {
+    path: 'auth/progress',
+    element: <AuthProgress />,
   },
 ];
 
