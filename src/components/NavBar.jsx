@@ -5,7 +5,7 @@ function NavBar() {
     <nav>
       <ul className={classes.list}>
         <li className={classes.item}>
-          <a>Create Account</a>
+          <a href='create'>Create Account</a>
         </li>
 
         <div className={classes.verticalLine}></div>

@@ -1,6 +1,7 @@
 import Home from './pages/Home';
 import Estimator from './pages/Estimator.jsx';
 import Progress from './pages/Progress.jsx';
+import CreateAcct from './pages/CreateAcct.jsx';
 
 const router = [
   {
@@ -14,6 +15,10 @@ const router = [
   {
     path: 'progress',
     element: <Progress />,
+  },
+  {
+    path: 'create',
+    element: <CreateAcct />,
   },
 ];
 

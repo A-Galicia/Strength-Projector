@@ -5,14 +5,17 @@ function Home() {
   return (
     <div className={classes.main}>
       <h1>Strength Projector</h1>
-      <Sample></Sample>
+      <Sample />
       <nav>
         <ul className={classes.list}>
           <li className={classes.item}>
             <a href='estimator'>Tryout the App</a>
           </li>
           <li className={classes.item}>
-            <a>Create an account</a>
+            <a href='create'>Create an Account</a>
+          </li>
+          <li className={classes.item}>
+            <a>Login</a>
           </li>
           <li className={classes.item}>
             <a

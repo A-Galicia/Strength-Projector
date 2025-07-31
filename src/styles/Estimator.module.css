@@ -1,12 +1,19 @@
 .main {
+  place-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
-  width: 115%;
+  overflow: auto;
+  width: fit-content;
   background-color: rgb(93, 93, 246);
   padding: 10px;
   border-radius: 30px;
+}
+
+@media (max-width: 430px) {
+  .main {
+    width: 112%;
+  }
 }
 
 .form {
