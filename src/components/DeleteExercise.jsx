@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import classes from '../styles/Progress.module.css';
 
-function CreateExercise({ open }) {
+function DeleteExercise({ open }) {
   const [exercise, setExercise] = useState('');
 
   async function postExercise() {
-    console.log('in postExercise');
     try {
       const token = localStorage.getItem('jwt');
       const body = JSON.stringify({ exercise });
 
-      const response = await fetch('http://localhost:8080/api/exercises', {
+      const response = await fetch('http://localhost:8080/api/login', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -34,11 +33,11 @@ function CreateExercise({ open }) {
     >
       {open && (
         <form onSubmit={postExercise}>
-          <label className={classes.label} htmlFor='addExercise'>
+          <label className={classes.label} htmlFor='exercise'>
             <input
               className={classes.input}
-              id='addExercise'
-              name='addExercise'
+              id='exercise'
+              name='exercise'
               type='text'
               value={exercise}
               onChange={(e) => setExercise(e.target.value)}
@@ -53,4 +52,4 @@ function CreateExercise({ open }) {
   );
 }
 
-export default CreateExercise;
+export default DeleteExercise;

@@ -4,6 +4,7 @@ import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
 import ProgressChart from '../components/ProgressChart';
 import CreateExercise from '../components/CreateExercise';
+import DeleteExercise from '../components/DeleteExercise';
 import Calc from '../calc';
 import { format } from 'date-fns';
 import { jwtDecode } from 'jwt-decode';
@@ -69,9 +70,9 @@ function AuthProgress() {
     try {
       const token = localStorage.getItem('jwt');
 
-      const response = await fetch('http://localhost:8080/api/excercises', {
-        method: 'get',
+      const response = await fetch('http://localhost:8080/api/exercises', {
         headers: {
+          method: 'GET',
           Authorization: `Bearer ${token}`,
         },
       });
@@ -81,7 +82,6 @@ function AuthProgress() {
       }
 
       const data = await response.json();
-      console.log(data.exercises);
       setExersices(data.exercises);
     } catch (err) {
       console.log(err);
@@ -109,14 +109,6 @@ function AuthProgress() {
   return (
     <div className={classes.main}>
       <NavBar />
-      <div
-        onClick={() => {
-          setAddOpen(!addOpen);
-        }}
-      >
-        Add Exercises
-      </div>
-      <CreateExercise open={addOpen} />
 
       <p>Enter Two data points to create a projection</p>
 
@@ -125,22 +117,22 @@ function AuthProgress() {
       <form className={classes.form} onSubmit={submitData}>
         <label className={classes.label} htmlFor='exercise'>
           Exercise:
-          <input
-            className={classes.input}
-            id='exercise'
+          <select
             name='exercise'
-            list='exercises'
             value={exercise}
             onChange={(e) => setExersice(e.target.value)}
-          />
+            id='exercise'
+          >
+            <option value=''>--Please choose an option--</option>
+            {exercises.map((exer) => {
+              return (
+                <option key={exer.id} value={exer.name}>
+                  {exer.name}
+                </option>
+              );
+            })}
+          </select>
         </label>
-
-        <datalist id='exercises'>
-          {exercises.map((exer) => {
-            return <option value={exer.name}></option>;
-          })}
-          <option value='None'></option>
-        </datalist>
 
         <label className={classes.label} htmlFor='mass'>
           Mass (lbs):
@@ -209,6 +201,26 @@ function AuthProgress() {
       ) : (
         <ProgressChart data={data} />
       )}
+
+      <hr className={classes.hr}></hr>
+
+      <div
+        onClick={() => {
+          setAddOpen(!addOpen);
+        }}
+      >
+        Add Exercises
+      </div>
+      <CreateExercise open={addOpen} />
+
+      <div
+        onClick={() => {
+          setDeleteOpen(!deleteOpen);
+        }}
+      >
+        Delete Exercises
+      </div>
+      <DeleteExercise open={deleteOpen} exercises={exercises} />
 
       <div className={classes.instrucions}>
         <p>
