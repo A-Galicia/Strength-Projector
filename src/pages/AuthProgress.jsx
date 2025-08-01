@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
 import ProgressChart from '../components/ProgressChart';
+import CreateExercise from '../components/CreateExercise';
 import Calc from '../calc';
 import { format } from 'date-fns';
 import { jwtDecode } from 'jwt-decode';
@@ -24,6 +25,9 @@ function AuthProgress() {
   });
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useState(true);
+  const [exercises, setExersices] = useState([]);
+  const [addOpen, setAddOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   // Check if jwt exists/valid ////////////////////////////////////
 
@@ -61,6 +65,33 @@ function AuthProgress() {
     setData(data);
   }
 
+  async function fetchExercises() {
+    try {
+      const token = localStorage.getItem('jwt');
+
+      const response = await fetch('http://localhost:8080/api/excercises', {
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error, status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data.exercises);
+      setExersices(data.exercises);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchExercises();
+  }, []);
+
   if (!auth) {
     return (
       <div>
@@ -78,8 +109,19 @@ function AuthProgress() {
   return (
     <div className={classes.main}>
       <NavBar />
+      <div
+        onClick={() => {
+          setAddOpen(!addOpen);
+        }}
+      >
+        Add Exercises
+      </div>
+      <CreateExercise open={addOpen} />
 
       <p>Enter Two data points to create a projection</p>
+
+      <hr className={classes.hr}></hr>
+
       <form className={classes.form} onSubmit={submitData}>
         <label className={classes.label} htmlFor='exercise'>
           Exercise:
@@ -94,10 +136,10 @@ function AuthProgress() {
         </label>
 
         <datalist id='exercises'>
+          {exercises.map((exer) => {
+            return <option value={exer.name}></option>;
+          })}
           <option value='None'></option>
-          <option value='Squat'></option>
-          <option value='Bench Press'></option>
-          <option value='Deadlift'></option>
         </datalist>
 
         <label className={classes.label} htmlFor='mass'>
@@ -158,7 +200,15 @@ function AuthProgress() {
         </button>
       </form>
 
-      <ProgressChart data={data} />
+      {loading ? (
+        <div className={classes.loaderContainer}>
+          <div className={classes.loadingText}>
+            Loading<span className={classes.dots}></span>
+          </div>
+        </div>
+      ) : (
+        <ProgressChart data={data} />
+      )}
 
       <div className={classes.instrucions}>
         <p>
