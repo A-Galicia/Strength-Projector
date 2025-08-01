@@ -123,7 +123,7 @@ function AuthProgress() {
             onChange={(e) => setExersice(e.target.value)}
             id='exercise'
           >
-            <option value=''>--Please choose an option--</option>
+            <option value=''>choose an exercise</option>
             {exercises.map((exer) => {
               return (
                 <option key={exer.id} value={exer.name}>

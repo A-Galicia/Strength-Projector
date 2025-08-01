@@ -1,29 +1,34 @@
-import { useState } from 'react';
 import classes from '../styles/Progress.module.css';
 
-function DeleteExercise({ open }) {
-  const [exercise, setExercise] = useState('');
+function DeleteExercise({ open, exercises }) {
+  async function deleteExercise(id, name) {
+    console.log(id);
+    const userConfirmation = confirm(
+      `Are you sure you want to delete - ${name}`
+    );
 
-  async function postExercise() {
-    try {
-      const token = localStorage.getItem('jwt');
-      const body = JSON.stringify({ exercise });
+    if (userConfirmation) {
+      try {
+        const token = localStorage.getItem('jwt');
+        const body = JSON.stringify({ id });
 
-      const response = await fetch('http://localhost:8080/api/login', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: body,
-      });
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) {
-        throw new Error(`Error, status: ${response.status}`);
+        const response = await fetch('http://localhost:8080/api/exercises', {
+          method: 'delete',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: body,
+        });
+        const data = await response.json();
+        console.log(data);
+        if (!response.ok) {
+          throw new Error(`Error, status: ${response.status}`);
+        }
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
   }
 
@@ -32,21 +37,19 @@ function DeleteExercise({ open }) {
       className={open ? classes.addExerciseActive : classes.addExerciseInactive}
     >
       {open && (
-        <form onSubmit={postExercise}>
-          <label className={classes.label} htmlFor='exercise'>
-            <input
-              className={classes.input}
-              id='exercise'
-              name='exercise'
-              type='text'
-              value={exercise}
-              onChange={(e) => setExercise(e.target.value)}
-            />
-          </label>
-          <button className={classes.submit} type='submit'>
-            Submit
-          </button>
-        </form>
+        <div>
+          {exercises.map((exer) => {
+            return (
+              <p
+                className={classes.deleteP}
+                onClick={() => deleteExercise(exer.id, exer.name)}
+                key={exer.id}
+              >
+                {exer.name}
+              </p>
+            );
+          })}
+        </div>
       )}
     </div>
   );
