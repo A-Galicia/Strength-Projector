@@ -5,13 +5,17 @@ function NavBar() {
     <nav>
       <ul className={classes.list}>
         <li className={classes.item}>
-          <a href='/create'>Create Account</a>
+          <a className={classes.anchor} href='/create'>
+            Create Account
+          </a>
         </li>
 
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a href='/login'>Login</a>
+          <a className={classes.anchor} href='/login'>
+            Login
+          </a>
         </li>
 
         <div className={classes.verticalLine}></div>
@@ -21,6 +25,7 @@ function NavBar() {
             href='https://github.com/A-Galicia/Strength-Projector'
             target='_blank'
             rel='noopener noreferrer'
+            className={classes.anchor}
           >
             Github
           </a>
@@ -29,13 +34,17 @@ function NavBar() {
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a href='/progress'>Progress Projector</a>
+          <a className={classes.anchor} href='/progress'>
+            Progress Projector
+          </a>
         </li>
 
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a href='/estimator'>Max Estimator</a>
+          <a className={classes.anchor} href='/estimator'>
+            Max Estimator
+          </a>
         </li>
       </ul>
     </nav>

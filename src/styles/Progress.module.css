@@ -101,6 +101,12 @@ button:hover {
   padding: 3px;
 }
 
+.btnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* Loading Animation */
 
 .loaderContainer {

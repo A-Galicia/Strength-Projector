@@ -22,7 +22,7 @@ nav {
   border-left: 3px solid black;
 }
 
-a {
+.anchor {
   place-self: center;
   width: min-content;
   text-decoration: none;

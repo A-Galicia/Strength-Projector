@@ -23,6 +23,11 @@ function AuthProgressChart({ data, exercises, name }) {
       return;
     }
 
+    // if exercise has no data reset
+    setMaxData([]);
+    setLastMax({});
+    setProjection([]);
+
     for (let i = 0; i < exercises.length; i++) {
       if (exercises[i].name == name) {
         setMaxData(exercises[i].strength);
@@ -110,7 +115,7 @@ function AuthProgressChart({ data, exercises, name }) {
   return (
     <div className={classes.mainChart}>
       <ResponsiveContainer width='100%' height='100%'>
-        <LineChart margin={{ bottom: 50, left: 50 }}>
+        <LineChart margin={{ top: 0, right: 20, bottom: 5, left: -10 }}>
           <Line
             type='monotone'
             dataKey='strength'
@@ -134,21 +139,18 @@ function AuthProgressChart({ data, exercises, name }) {
             dataKey='day'
             stroke='#000000ff'
             allowDuplicatedCategory={false}
+            angle={5}
           >
-            <Label className={classes.label} value='days' position='bottom' />
+            <Label className={classes.label} value='days' position='top' />
           </XAxis>
-          <YAxis domain={['dataMin - 100', 'dataMax + 100']} stroke='#000000ff'>
-            <Label
-              className={classes.label}
-              value='lbs'
-              position='insideTopLeft'
-            />
+          <YAxis domain={['dataMin - 50', 'dataMax + 50']} stroke='#000000ff'>
+            <Label className={classes.label} value='lbs' position='center' />
           </YAxis>
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
 
-      <div>
+      <div className={classes.btnDiv}>
         <form className={classes.deleteForm} onSubmit={deleteLast}>
           <button className={classes.delete} type='submit'>
             Delete Last Input

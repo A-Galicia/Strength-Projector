@@ -96,7 +96,9 @@ function Home() {
           />
         </label>
 
-        <button type='submit'>Submit</button>
+        <button className={classes.submit} type='submit'>
+          Submit
+        </button>
       </form>
 
       <p>
