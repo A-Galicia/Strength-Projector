@@ -60,7 +60,9 @@ function Progress() {
   return (
     <div className={classes.main}>
       <NavBar />
-      <p></p>
+      <p className={classes.warning}>
+        Create and account for full access and to save your data!
+      </p>
 
       <p>Enter Two data points to create a projection</p>
       <form className={classes.form} onSubmit={submitData}>

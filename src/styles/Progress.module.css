@@ -79,6 +79,10 @@ button:hover {
   background-color: rgb(177, 177, 255);
 }
 
+.warning {
+  color: rgb(197, 0, 0);
+}
+
 /* Chart Styles */
 
 .mainChart {

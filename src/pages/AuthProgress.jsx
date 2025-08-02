@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
 import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
-import ProgressChart from '../components/ProgressChart';
+import AuthProgressChart from '../components/AuthProgressChart';
 import CreateExercise from '../components/CreateExercise';
 import DeleteExercise from '../components/DeleteExercise';
 import Calc from '../calc';
 import { format } from 'date-fns';
 import { jwtDecode } from 'jwt-decode';
-
-function CheckJwt() {}
 
 function AuthProgress() {
   const [exercise, setExersice] = useState('');
@@ -85,6 +83,8 @@ function AuthProgress() {
       setExersices(data.exercises);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -122,6 +122,7 @@ function AuthProgress() {
             value={exercise}
             onChange={(e) => setExersice(e.target.value)}
             id='exercise'
+            required
           >
             <option value=''>choose an exercise</option>
             {exercises.map((exer) => {
@@ -199,7 +200,7 @@ function AuthProgress() {
           </div>
         </div>
       ) : (
-        <ProgressChart data={data} />
+        <AuthProgressChart data={data} exercises={exercises} name={exercise} />
       )}
 
       <hr className={classes.hr}></hr>
