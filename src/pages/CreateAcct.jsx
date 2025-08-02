@@ -7,6 +7,7 @@ function Home() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
   const [errStatus, setErrStatus] = useState(false);
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Home() {
   async function createUser(e) {
     try {
       e.preventDefault();
-      const body = JSON.stringify({ username, email, password });
+      const body = JSON.stringify({ username, email, password, confirm });
 
       const response = await fetch('http://localhost:8080/api/user', {
         method: 'post',
@@ -86,12 +87,26 @@ function Home() {
           <input
             className={classes.input}
             id='password'
-            type='password'
+            type='text'
             min='5'
             name='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete='new-password'
+            required
+          />
+        </label>
+
+        <label className={classes.label} htmlFor='confirm'>
+          Confirm Password:
+          <input
+            className={classes.input}
+            id='confirm'
+            type='confirm'
+            min='5'
+            name='confirm'
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
             required
           />
         </label>
