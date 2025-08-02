@@ -1,11 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
 import ProgressChart from '../components/ProgressChart';
 import Calc from '../calc';
 import { format } from 'date-fns';
+import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 function Progress() {
+  const navigate = useNavigate();
+  // Check if jwt exists/valid ////////////////////////////////////
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      return;
+    }
+    const decodedToken = jwtDecode(token);
+    let currentDate = new Date();
+
+    if (decodedToken.exp * 1000 > currentDate.getTime()) {
+      navigate('/auth/progress', { replace: true });
+    }
+  }, [navigate]);
+
+  //_______________________________________________________________
+
   const [exercise, setExersice] = useState('');
   const [mass, setMass] = useState(100);
   const [reps, setReps] = useState(1);
@@ -40,6 +60,7 @@ function Progress() {
   return (
     <div className={classes.main}>
       <NavBar />
+      <p></p>
 
       <p>Enter Two data points to create a projection</p>
       <form className={classes.form} onSubmit={submitData}>

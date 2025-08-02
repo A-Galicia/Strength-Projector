@@ -2,7 +2,6 @@ import classes from '../styles/Progress.module.css';
 
 function DeleteExercise({ open, exercises }) {
   async function deleteExercise(id, name) {
-    console.log(id);
     const userConfirmation = confirm(
       `Are you sure you want to delete - ${name}`
     );

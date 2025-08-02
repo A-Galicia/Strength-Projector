@@ -205,6 +205,7 @@ function AuthProgress() {
       <hr className={classes.hr}></hr>
 
       <div
+        className={classes.changeExerciseBtn}
         onClick={() => {
           setAddOpen(!addOpen);
         }}
@@ -214,6 +215,7 @@ function AuthProgress() {
       <CreateExercise open={addOpen} />
 
       <div
+        className={classes.changeExerciseBtn}
         onClick={() => {
           setDeleteOpen(!deleteOpen);
         }}
