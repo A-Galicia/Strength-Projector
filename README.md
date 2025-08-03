@@ -1,12 +1,61 @@
-# React + Vite
+# One Rep Max Tracker 💪📈
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web app that helps users track their strength progress by calculating and visualizing their **One Rep Max (1RM)** over time for any exercise.
 
-Currently, two official plugins are available:
+# 🧠 What It Does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This app allows users to:
 
-## Expanding the ESLint configuration
+- Input an **exercise**, **weight lifted**, and **number of reps performed**
+- Automatically calculate the **One Rep Max (1RM)** using the Epley formula
+- **Store and view** 1RM entries over time
+- See a **graphical representation** of their strength progression for each exercise
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📊 One Rep Max Formula
+
+We use the **Epley formula** to estimate 1RM:
+
+Example:  
+If a user lifts 100 lbs for 5 reps:
+
+Then:
+Uses linear regression to calculate the progress over 50 days. Although inaccurate initially, the projection gets better over time
+
+---
+
+## 🖼️ Features
+
+- 🔐 Optional user login for personalized tracking (if using auth)
+- 🏋️ Add any custom exercise
+- 📈 View 1RM history in a responsive line graph (Recharts, Chart.js, etc.)
+- 🧠 Smart input validation and error handling
+- ☁️ Data persistence with a backend (MongoDB, PostgreSQL, Firebase, etc.)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React,
+- **Backend:** Node.js, Express.js
+- **Database:** Postgresql
+- **Graphing Library:** Recharts
+- **Deployment:** Cloudflare
+- **Security and Authenticaion:** JsonWebToken
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js & npm installed
+- Postgresql and the Strength-Projector-API (also in my github repositories)
+
+### Installation
+
+git clone https://github.com/your-username/Strength-Projector.git
+cd Strength-Projector
+npm install
+npm run dev
