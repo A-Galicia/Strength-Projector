@@ -158,7 +158,7 @@ function AuthProgressChart({ data, exercises, name }) {
         </form>
 
         <form className={classes.deleteForm} onSubmit={save}>
-          <button className={classes.delete} type='submit'>
+          <button className={classes.save} type='submit'>
             Save
           </button>
         </form>

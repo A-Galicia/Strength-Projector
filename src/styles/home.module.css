@@ -19,3 +19,35 @@
 .item {
   margin-block: 10px;
 }
+
+.anchor {
+  place-self: center;
+  width: min-content;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.nav {
+  animation: show 1.5s ease-in-out both;
+}
+
+@keyframes show {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.25;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
