@@ -18,7 +18,7 @@ This app allows users to:
 We use the **Epley formula** to estimate 1RM:
 
 Example:  
-If a user lifts 100 lbs for 5 reps:
+If a user lifts 225 lbs for 5 reps: 255 lbs
 
 Then:
 Uses linear regression to calculate the progress over 50 days. Although inaccurate initially, the projection gets better over time
@@ -29,9 +29,8 @@ Uses linear regression to calculate the progress over 50 days. Although inaccura
 
 - 🔐 Optional user login for personalized tracking (if using auth)
 - 🏋️ Add any custom exercise
-- 📈 View 1RM history in a responsive line graph (Recharts, Chart.js, etc.)
-- 🧠 Smart input validation and error handling
-- ☁️ Data persistence with a backend (MongoDB, PostgreSQL, Firebase, etc.)
+- 📈 View 1RM history in a responsive line graph (Recharts)
+- ☁️ Data persistence with a backend (Postgresql, Express.js)
 
 ---
 
@@ -40,8 +39,8 @@ Uses linear regression to calculate the progress over 50 days. Although inaccura
 - **Frontend:** React,
 - **Backend:** Node.js, Express.js
 - **Database:** Postgresql
-- **Graphing Library:** Recharts
-- **Deployment:** Cloudflare
+- **Graphing Library:** Recharts.js
+- **Deployment:** Cloudflare, Vercel, Supabase
 - **Security and Authenticaion:** JsonWebToken
 
 ---
@@ -55,7 +54,7 @@ Uses linear regression to calculate the progress over 50 days. Although inaccura
 
 ### Installation
 
-git clone https://github.com/your-username/Strength-Projector.git
+git clone https://github.com/A-Galicia/Strength-Projector.git
 cd Strength-Projector
 npm install
 npm run dev

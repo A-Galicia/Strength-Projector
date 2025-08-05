@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import classes from '../styles/Progress.module.css';
 
+const vercelURL = 'https://strength-projector-api.vercel.app';
+//const localHostURL = 'http://localhost:8080';
+
 function CreateExercise({ open }) {
   const [exercise, setExercise] = useState('');
 
@@ -10,7 +13,7 @@ function CreateExercise({ open }) {
       const token = localStorage.getItem('jwt');
       const body = JSON.stringify({ exercise });
 
-      const response = await fetch('http://localhost:8080/api/exercises', {
+      const response = await fetch(`${vercelURL}/api/exercises`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

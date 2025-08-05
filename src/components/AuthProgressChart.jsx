@@ -13,6 +13,9 @@ import {
 } from 'recharts';
 import { compareAsc, parse } from 'date-fns';
 
+const vercelURL = 'https://strength-projector-api.vercel.app';
+//const localHostURL = 'http://localhost:8080';
+
 function AuthProgressChart({ data, exercises, name }) {
   const [maxData, setMaxData] = useState([]);
   const [lastMax, setLastMax] = useState({});
@@ -95,7 +98,7 @@ function AuthProgressChart({ data, exercises, name }) {
       const token = localStorage.getItem('jwt');
       const body = JSON.stringify({ name: name, strength: maxData });
 
-      const response = await fetch('http://localhost:8080/api/exercises', {
+      const response = await fetch(`${vercelURL}/api/exercises`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

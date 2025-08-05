@@ -9,6 +9,9 @@ import Calc from '../calc';
 import { format } from 'date-fns';
 import { jwtDecode } from 'jwt-decode';
 
+const vercelURL = 'https://strength-projector-api.vercel.app';
+//const localHostURL = 'http://localhost:8080';
+
 function AuthProgress() {
   const [exercise, setExersice] = useState('');
   const [mass, setMass] = useState(100);
@@ -68,7 +71,7 @@ function AuthProgress() {
     try {
       const token = localStorage.getItem('jwt');
 
-      const response = await fetch('http://localhost:8080/api/exercises', {
+      const response = await fetch(`${vercelURL}/api/exercises`, {
         headers: {
           method: 'GET',
           Authorization: `Bearer ${token}`,

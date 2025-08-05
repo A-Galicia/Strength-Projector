@@ -1,5 +1,8 @@
 import classes from '../styles/Progress.module.css';
 
+const vercelURL = 'https://strength-projector-api.vercel.app';
+//const localHostURL = 'http://localhost:8080';
+
 function DeleteExercise({ open, exercises }) {
   async function deleteExercise(id, name) {
     const userConfirmation = confirm(
@@ -11,7 +14,7 @@ function DeleteExercise({ open, exercises }) {
         const token = localStorage.getItem('jwt');
         const body = JSON.stringify({ id });
 
-        const response = await fetch('http://localhost:8080/api/exercises', {
+        const response = await fetch(`${vercelURL}/api/exercises`, {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json',

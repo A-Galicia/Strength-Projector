@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import classes from '../styles/CreateAcct.module.css';
 
+const vercelURL = 'https://strength-projector-api.vercel.app';
+//const localHostURL = 'http://localhost:8080';
+
 function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +18,7 @@ function Login() {
       e.preventDefault();
       const body = JSON.stringify({ usernameOrEmail, password });
 
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch(`${vercelURL}/api/login`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
