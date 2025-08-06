@@ -28,6 +28,7 @@
   padding: 5px;
   border-radius: 50px;
   font-size: 1.3rem;
+  min-width: 0;
 }
 input:focus {
   background-color: var(--tertiary);

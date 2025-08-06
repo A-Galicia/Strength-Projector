@@ -27,7 +27,7 @@ function Sample() {
   return (
     <div className={classes.main}>
       <ResponsiveContainer width='100%' height='100%'>
-        <AreaChart data={data} margin={{ bottom: 50, left: 50 }}>
+        <AreaChart data={data} margin={{ bottom: 50, left: 30 }}>
           <Line
             type='monotone'
             dataKey='strength'

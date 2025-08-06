@@ -39,9 +39,15 @@
 }
 
 table {
-  width: 105%;
+  width: 99%;
   max-width: 600px;
   table-layout: fixed;
+}
+
+@media (max-width: 330px) {
+  table {
+    width: 97%;
+  }
 }
 
 th {
@@ -71,4 +77,9 @@ tbody > tr:nth-of-type(even) {
 
 .max {
   font-size: 2rem;
+}
+
+.info {
+  font-size: 1.5rem;
+  max-width: 90%;
 }
