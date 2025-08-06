@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import classes from '../styles/CreateAcct.module.css';
+import Footer from '../components/Footer';
 
 const vercelURL = 'https://strength-projector-api.vercel.app';
 //const localHostURL = 'http://localhost:8080';
@@ -43,6 +44,12 @@ function Home() {
     <div className={classes.main} onSubmit={createUser}>
       <NavBar />
       <h1>Create Account</h1>
+
+      <p className={classes.info}>
+        To save progress, let's get started!
+        <br />
+        Create your fitness profile
+      </p>
 
       {errStatus === true ? (
         <ul className={classes.errDiv}>
@@ -119,9 +126,11 @@ function Home() {
         </button>
       </form>
 
-      <p>
+      <p className={classes.info}>
         Have an account? <a href='/login'>Login</a>
       </p>
+
+      <Footer />
     </div>
   );
 }

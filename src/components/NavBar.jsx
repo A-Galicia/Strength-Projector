@@ -21,19 +21,6 @@ function NavBar() {
         <div className={classes.verticalLine}></div>
 
         <li className={classes.item}>
-          <a
-            href='https://github.com/A-Galicia/Strength-Projector'
-            target='_blank'
-            rel='noopener noreferrer'
-            className={classes.anchor}
-          >
-            Github
-          </a>
-        </li>
-
-        <div className={classes.verticalLine}></div>
-
-        <li className={classes.item}>
           <a className={classes.anchor} href='/progress'>
             Progress Projector
           </a>

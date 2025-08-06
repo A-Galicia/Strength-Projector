@@ -19,7 +19,7 @@ function RpeTable({ mass, reps, rpe }) {
       const values = [];
       for (let j = 1; j <= 10; j++) {
         const repMax = Calc.get1rm(weight, j, i);
-        const eRepMax = (weight * (weight / repMax)).toFixed(1);
+        const eRepMax = (weight * (weight / repMax)).toFixed(0);
         values.push(eRepMax);
       }
 
@@ -34,8 +34,8 @@ function RpeTable({ mass, reps, rpe }) {
   }, [mass, reps, rpe]);
 
   let headers = [];
-  for (let i = 2; i <= 10; i++) {
-    headers.push(<th key={i}>{i} Reps</th>);
+  for (let i = 1; i <= 10; i++) {
+    headers.push(<th key={i}>{i} Rep</th>);
   }
 
   return (
@@ -48,7 +48,7 @@ function RpeTable({ mass, reps, rpe }) {
         <thead>
           <tr>
             <th></th>
-            <th>1 Rep</th>
+            {/* <th>1 Rep</th> */}
             {headers.map((h) => {
               return h;
             })}

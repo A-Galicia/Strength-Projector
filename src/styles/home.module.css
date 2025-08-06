@@ -1,5 +1,5 @@
 .main {
-  background-color: rgb(93, 93, 246);
+  background-color: var(--primary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,6 +26,7 @@
   text-decoration: none;
   color: black;
   text-align: center;
+  font-size: 1.7rem;
 }
 
 .nav {

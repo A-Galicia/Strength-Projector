@@ -2,6 +2,7 @@ import { useState } from 'react';
 import classes from '../styles/Estimator.module.css';
 import RpeTable from '../components/RpeTable';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 function Projector() {
   const [exercise, setExersice] = useState('');
@@ -84,6 +85,7 @@ function Projector() {
       </form>
 
       <RpeTable mass={mass} reps={reps} rpe={rpe} />
+      <Footer />
     </div>
   );
 }

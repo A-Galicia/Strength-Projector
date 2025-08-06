@@ -4,26 +4,20 @@
   flex-direction: column;
   align-items: center;
   overflow: auto;
-  width: fit-content;
-  background-color: rgb(93, 93, 246);
+  background-color: var(--primary);
   padding: 10px;
   border-radius: 30px;
-}
-
-@media (max-width: 430px) {
-  .main {
-    width: 112%;
-  }
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: rgb(154, 252, 251);
+  background-color: var(--tertiary);
   margin: 10px;
   padding: 10px;
   border-radius: 30px;
+  font-size: 1.3rem;
 }
 
 .label {
@@ -36,6 +30,7 @@
   flex-grow: 1;
   padding: 5px;
   border-radius: 50px;
+  font-size: 1rem;
 }
 
 .submit {
@@ -44,7 +39,9 @@
 }
 
 table {
-  width: 90%;
+  width: 105%;
+  max-width: 600px;
+  table-layout: fixed;
 }
 
 th {
@@ -56,21 +53,20 @@ td {
 }
 
 tbody > tr:nth-of-type(even) {
-  background-color: rgb(154, 252, 251);
+  background-color: var(--tertiary);
 }
 
 .tableDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(93, 93, 246);
 }
 
 .maxDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 10px outset rgb(80, 80, 244);
+  border: 10px outset rgb(173, 193, 205);
 }
 
 .max {

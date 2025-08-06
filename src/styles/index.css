@@ -1,3 +1,10 @@
+:root {
+  --primary: rgb(206, 229, 242);
+  --secondary: rgb(172, 203, 225);
+  --tertiary: rgb(124, 152, 179);
+  --quaternary: rgb(99, 112, 129);
+}
+
 body {
   background-color: rgba(29, 28, 28, 0.762);
 }

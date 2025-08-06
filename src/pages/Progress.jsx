@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
 import ProgressChart from '../components/ProgressChart';
+import Footer from '../components/Footer';
 import Calc from '../calc';
 import { format } from 'date-fns';
 import { jwtDecode } from 'jwt-decode';
@@ -64,7 +65,9 @@ function Progress() {
         Create and account for full access and to save your data!
       </p>
 
-      <p>Enter Two data points to create a projection</p>
+      <p className={classes.info}>
+        Enter Two data points to create a projection
+      </p>
       <form className={classes.form} onSubmit={submitData}>
         <label className={classes.label} htmlFor='exercise'>
           Exercise:
@@ -127,9 +130,10 @@ function Progress() {
           />
         </label>
 
-        <label htmlFor='date'>
+        <label className={classes.label} htmlFor='date'>
           Date:
           <input
+            className={classes.input}
             id='date'
             type='date'
             name='date'
@@ -145,7 +149,7 @@ function Progress() {
 
       <ProgressChart data={data} />
 
-      <div className={classes.instrucions}>
+      <div className={classes.info}>
         <p>
           The projection works best with a large array of data. So the more
           frequent and the longer the history of data that is charted, the
@@ -162,6 +166,7 @@ function Progress() {
           won't have an effect on the calculation
         </p>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.foot {
+  margin-top: 10px;
+  background-color: var(--quaternary);
+  width: 100%;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.anchor {
+  color: black;
+}

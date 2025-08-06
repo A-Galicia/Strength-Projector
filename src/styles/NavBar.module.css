@@ -1,3 +1,10 @@
+nav {
+  width: 80%;
+  min-width: fit-content;
+  background-color: var(--quaternary);
+  border-radius: 20px;
+}
+
 .list {
   list-style-type: none;
   padding: 0;
@@ -10,12 +17,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-}
-
-nav {
-  width: fit-content;
-  background-color: rgb(0, 213, 0);
-  border-radius: 20px;
 }
 
 .verticalLine {

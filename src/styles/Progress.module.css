@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(93, 93, 246);
+  background-color: var(--primary);
   border-radius: 30px;
   padding: 5px;
 }
@@ -11,29 +11,36 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-size: 1.2rem;
+  width: 95%;
 }
 
 .label {
   display: flex;
   margin-block: 5px;
   width: 100%;
+  font-size: 1.5rem;
+  align-items: center;
 }
 
 .input {
   flex-grow: 1;
   padding: 5px;
   border-radius: 50px;
+  font-size: 1.3rem;
 }
 input:focus {
-  background-color: aqua;
+  background-color: var(--tertiary);
 }
 
 .submit {
   width: 30%;
-  margin-block: 5px;
+  margin-block: 10px;
   border: 3px solid black;
   border-radius: 20px;
   padding: 3px;
+  font-size: 1.2rem;
+  background-color: var(--secondary);
 }
 
 button:hover {
@@ -49,6 +56,7 @@ button:hover {
   visibility: visible;
   transform: translateY(0);
   transition: 1s ease-out;
+  background-color: var(--quaternary);
 }
 
 .addExerciseInactive {
@@ -64,6 +72,7 @@ button:hover {
   border: 5px solid red;
   border-radius: 10px;
   padding: 10px;
+  font-size: 1.3rem;
 }
 
 .hr {
@@ -76,11 +85,18 @@ button:hover {
   border-radius: 30px;
   margin: 5px;
   padding: 5px;
-  background-color: rgb(177, 177, 255);
+  /* background-color: rgb(177, 177, 255); */
+  font-size: 1.5rem;
+  background-color: var(--secondary);
 }
 
 .warning {
   color: rgb(197, 0, 0);
+  font-size: 1.5rem;
+}
+
+.info {
+  font-size: 1.5rem;
 }
 
 /* Chart Styles */
@@ -99,13 +115,17 @@ button:hover {
   border: 5px solid red;
   border-radius: 20px;
   padding: 3px;
+  font-size: 1.2rem;
+  background-color: var(--secondary);
 }
 
 .save {
-  border: 5px solid rgb(0, 204, 0);
+  border: 5px solid rgb(0, 162, 0);
   border-radius: 20px;
   padding: 3px;
   padding-inline: 10px;
+  font-size: 1.2rem;
+  background-color: var(--secondary);
 }
 
 .btnDiv {

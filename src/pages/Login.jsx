@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import classes from '../styles/CreateAcct.module.css';
+import Footer from '../components/Footer';
 
 const vercelURL = 'https://strength-projector-api.vercel.app';
 //const localHostURL = 'http://localhost:8080';
@@ -89,9 +90,11 @@ function Login() {
         </button>
       </form>
 
-      <p>
+      <p className={classes.info}>
         Need an account? <a href='/create'>Create one HERE!</a>
       </p>
+
+      <Footer />
     </div>
   );
 }

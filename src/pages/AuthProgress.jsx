@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
 import classes from '../styles/Progress.module.css';
 import NavBar from '../components/NavBar';
 import AuthProgressChart from '../components/AuthProgressChart';
@@ -8,6 +7,7 @@ import DeleteExercise from '../components/DeleteExercise';
 import Calc from '../calc';
 import { format } from 'date-fns';
 import { jwtDecode } from 'jwt-decode';
+import Footer from '../components/Footer';
 
 const vercelURL = 'https://strength-projector-api.vercel.app';
 //const localHostURL = 'http://localhost:8080';
@@ -113,7 +113,9 @@ function AuthProgress() {
     <div className={classes.main}>
       <NavBar />
 
-      <p>Enter Two data points to create a projection</p>
+      <p className={classes.info}>
+        Enter Two data points to create a projection
+      </p>
 
       <hr className={classes.hr}></hr>
 
@@ -121,6 +123,7 @@ function AuthProgress() {
         <label className={classes.label} htmlFor='exercise'>
           Exercise:
           <select
+            className={classes.input}
             name='exercise'
             value={exercise}
             onChange={(e) => setExersice(e.target.value)}
@@ -180,9 +183,10 @@ function AuthProgress() {
           />
         </label>
 
-        <label htmlFor='date'>
+        <label className={classes.label} htmlFor='date'>
           Date:
           <input
+            className={classes.input}
             id='date'
             type='date'
             name='date'
@@ -228,7 +232,7 @@ function AuthProgress() {
       </div>
       <DeleteExercise open={deleteOpen} exercises={exercises} />
 
-      <div className={classes.instrucions}>
+      <div className={classes.info}>
         <p>
           The projection works best with a large array of data. So the more
           frequent and the longer the history of data that is charted, the
@@ -245,6 +249,7 @@ function AuthProgress() {
           won't have an effect on the calculation
         </p>
       </div>
+      <Footer />
     </div>
   );
 }

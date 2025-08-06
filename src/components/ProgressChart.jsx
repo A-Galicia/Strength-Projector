@@ -66,7 +66,7 @@ function ProgressChart({ data }) {
   return (
     <div className={classes.mainChart}>
       <ResponsiveContainer width='100%' height='100%'>
-        <LineChart margin={{ bottom: 50, left: 50 }}>
+        <LineChart margin={{ top: 0, right: 20, bottom: 5, left: -10 }}>
           <Line
             type='monotone'
             dataKey='strength'
@@ -90,15 +90,12 @@ function ProgressChart({ data }) {
             dataKey='day'
             stroke='#000000ff'
             allowDuplicatedCategory={false}
+            angle={5}
           >
-            <Label className={classes.label} value='days' position='bottom' />
+            <Label className={classes.label} value='days' position='top' />
           </XAxis>
-          <YAxis domain={['dataMin - 100', 'dataMax + 100']} stroke='#000000ff'>
-            <Label
-              className={classes.label}
-              value='lbs'
-              position='insideTopLeft'
-            />
+          <YAxis domain={['dataMin - 50', 'dataMax + 50']} stroke='#000000ff'>
+            <Label className={classes.label} value='lbs' position='center' />
           </YAxis>
           <Tooltip />
         </LineChart>
