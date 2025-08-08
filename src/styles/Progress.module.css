@@ -69,6 +69,20 @@ button:hover {
   transition: 1s ease-out;
 }
 
+.errDiv {
+  border: 5px solid rgb(200, 0, 0);
+  padding: 20px;
+  border-radius: 30px;
+  width: fit-content;
+}
+
+.error {
+  color: rgb(200, 0, 0);
+  width: fit-content;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
 .deleteP {
   border: 5px solid red;
   border-radius: 10px;

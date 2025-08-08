@@ -97,7 +97,7 @@ function Home() {
           <input
             className={classes.input}
             id='password'
-            type='text'
+            type='password'
             min='5'
             name='password'
             value={password}
@@ -112,7 +112,7 @@ function Home() {
           <input
             className={classes.input}
             id='confirm'
-            type='confirm'
+            type='password'
             min='5'
             name='confirm'
             value={confirm}

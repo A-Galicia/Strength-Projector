@@ -95,8 +95,11 @@ function AuthProgressChart({ data, exercises, name }) {
 
   async function save() {
     try {
+      console.log('in save');
       const token = localStorage.getItem('jwt');
       const body = JSON.stringify({ name: name, strength: maxData });
+
+      console.log(body);
 
       const response = await fetch(`${vercelURL}/api/exercises`, {
         method: 'PUT',

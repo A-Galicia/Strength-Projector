@@ -30,6 +30,8 @@ function AuthProgress() {
   const [exercises, setExersices] = useState([]);
   const [addOpen, setAddOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [errStatus, setErrStatus] = useState(false);
+  const [error, setError] = useState([]);
 
   // Check if jwt exists/valid ////////////////////////////////////
 
@@ -86,6 +88,8 @@ function AuthProgress() {
       setExersices(data.exercises);
     } catch (err) {
       console.log(err);
+      setError(err);
+      setErrStatus(true);
     } finally {
       setLoading(false);
     }
@@ -94,6 +98,11 @@ function AuthProgress() {
   useEffect(() => {
     fetchExercises();
   }, []);
+
+  function handleError(error) {
+    setError(error);
+    setErrStatus(true);
+  }
 
   if (!auth) {
     return (
@@ -116,6 +125,12 @@ function AuthProgress() {
       <p className={classes.info}>
         Enter Two data points to create a projection
       </p>
+
+      {errStatus === true ? (
+        <div className={classes.errDiv}>
+          <p className={classes.error}>{error.message}</p>
+        </div>
+      ) : null}
 
       <hr className={classes.hr}></hr>
 
@@ -220,7 +235,8 @@ function AuthProgress() {
       >
         Add Exercises
       </div>
-      <CreateExercise open={addOpen} />
+
+      <CreateExercise open={addOpen} onError={handleError} />
 
       <div
         className={classes.changeExerciseBtn}
@@ -230,7 +246,11 @@ function AuthProgress() {
       >
         Delete Exercises
       </div>
-      <DeleteExercise open={deleteOpen} exercises={exercises} />
+      <DeleteExercise
+        open={deleteOpen}
+        exercises={exercises}
+        onError={handleError}
+      />
 
       <div className={classes.info}>
         <p>

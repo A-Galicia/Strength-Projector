@@ -57,7 +57,7 @@ function Login() {
 
       <form className={classes.form}>
         <label className={classes.label} htmlFor='usernameOrEmail'>
-          Username:
+          Username or Email:
           <input
             className={classes.input}
             id='usernameOrEmail'

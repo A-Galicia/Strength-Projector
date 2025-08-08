@@ -3,7 +3,7 @@ import classes from '../styles/Progress.module.css';
 const vercelURL = 'https://strength-projector-api.vercel.app';
 //const localHostURL = 'http://localhost:8080';
 
-function DeleteExercise({ open, exercises }) {
+function DeleteExercise({ open, exercises, onError }) {
   async function deleteExercise(id, name) {
     const userConfirmation = confirm(
       `Are you sure you want to delete - ${name}`
@@ -22,13 +22,15 @@ function DeleteExercise({ open, exercises }) {
           },
           body: body,
         });
-        const data = await response.json();
-        console.log(data);
         if (!response.ok) {
-          throw new Error(`Error, status: ${response.status}`);
+          throw new Error(
+            `Error status: ${response.status}, failure to delete`
+          );
+        } else {
+          window.location.reload();
         }
-        window.location.reload();
       } catch (err) {
+        onError(err);
         console.log(err);
       }
     }

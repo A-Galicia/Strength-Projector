@@ -4,11 +4,11 @@ import classes from '../styles/Progress.module.css';
 const vercelURL = 'https://strength-projector-api.vercel.app';
 //const localHostURL = 'http://localhost:8080';
 
-function CreateExercise({ open }) {
+function CreateExercise({ open, onError }) {
   const [exercise, setExercise] = useState('');
 
-  async function postExercise() {
-    console.log('in postExercise');
+  async function postExercise(e) {
+    e.preventDefault();
     try {
       const token = localStorage.getItem('jwt');
       const body = JSON.stringify({ exercise });
@@ -21,12 +21,15 @@ function CreateExercise({ open }) {
         },
         body: body,
       });
-      const data = await response.json();
-      console.log(data);
       if (!response.ok) {
-        throw new Error(`Error, status: ${response.status}`);
+        throw new Error(
+          `Error status: ${response.status}, try a different name`
+        );
+      } else {
+        window.location.reload();
       }
     } catch (err) {
+      onError(err);
       console.log(err);
     }
   }
@@ -47,7 +50,7 @@ function CreateExercise({ open }) {
               onChange={(e) => setExercise(e.target.value)}
             />
           </label>
-          <button className={classes.submit} type='submit'>
+          <button className={classes.submit} /*  type='submit' */>
             Submit
           </button>
         </form>
