@@ -93,26 +93,30 @@ function AuthProgressChart({ data, exercises, name }) {
     }
   }, [maxData, lastMax]);
 
-  async function save() {
+  async function save(e) {
+    e.preventDefault();
     try {
-      console.log('in save');
       const token = localStorage.getItem('jwt');
       const body = JSON.stringify({ name: name, strength: maxData });
 
       console.log(body);
 
-      const response = await fetch(`${vercelURL}/api/exercises`, {
-        method: 'PUT',
+      const response = await fetch(`${vercelURL}/api/exercises/data`, {
+        method: 'post',
         headers: {
           'Content-Type': 'application/json',
+          /* 'Content-Type': 'text/plain', */
           Authorization: `Bearer ${token}`,
         },
         body: body,
       });
 
+      const data = await response;
       if (!response.ok) {
         throw new Error(`Error, status: ${response.status}`);
       }
+      window.location.reload();
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
