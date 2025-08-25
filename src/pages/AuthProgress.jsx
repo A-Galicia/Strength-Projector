@@ -163,7 +163,7 @@ function AuthProgress() {
             id='mass'
             type='number'
             name='mass'
-            min='8'
+            min='1'
             value={mass}
             onChange={(e) => setMass(e.target.value)}
             required

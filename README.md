@@ -2,6 +2,8 @@
 
 A web app that helps users track their strength progress by calculating and visualizing their **One Rep Max (1RM)** over time for any exercise.
 
+![Screenshot of a user's exercise](public/Screenshot.png)
+
 # 🧠 What It Does
 
 This app allows users to:
