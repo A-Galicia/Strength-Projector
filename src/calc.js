@@ -72,7 +72,6 @@ class Calc {
     let slope = parseFloat(
       (length * sumXY - sumX * sumY) / (length * sumXsquared - sumX * sumX)
     );
-    const intercept = (sumY - slope * sumX) / length;
 
     const lastDay = parse(`${lastMax.day}`, 'MM/dd/yyyy', new Date());
 
@@ -95,49 +94,49 @@ class Calc {
         day: format(projectionDays[0], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[0], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
       {
         day: format(projectionDays[1], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[1], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
       {
         day: format(projectionDays[2], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[2], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
       {
         day: format(projectionDays[3], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[3], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
       {
         day: format(projectionDays[4], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[4], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
       {
         day: format(projectionDays[5], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[5], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
       {
         day: format(projectionDays[6], 'MM/dd/yy'),
         strength: (
           slope * differenceInDays(projectionDays[6], lastDay) +
-          intercept
+          parseFloat(lastMax.strength)
         ).toFixed(1),
       },
     ];
